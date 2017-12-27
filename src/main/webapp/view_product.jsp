@@ -183,39 +183,13 @@
                     if (steam_app_id > 0) {
                 %>
                 <br/><hr/>
-                <h3>Steam News:</h3>
-                <%
-                    RootObject r = new RootObject();
-                    r = r.getNews(steam_app_id);
-                    Appnews appnews = r.getAppnews();
-                    List<Newsitem> news = appnews.getNewsitems();
-                %>
-                <div class="divs">
-                    <%
-                        for (int i = 0; i < news.size(); i++) {
-                            Newsitem n = news.get(i);
-                            SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
-                            Date date = originalFormat.parse((n.getDate()).toString());
-                    %>
-                    <div>
-                        <p><%=date %></p><br/><br/>
-                        <p class="newsContent"><%=n.getContents()%></p>
-                        <br/><br/>
-                        <p><%=i + 1%>/<%=news.size()%></p>
-                        <br/>
-                    </div>
-
-                    <%
-                        }
-                    %>
+                <!--<h3>Steam News:</h3>-->
+               
                 </div>
-                <%
-                    if (news.size() > 1) {
-
-                %>
+                
                 <br/>
-                <button id="brnPrevNews">Previous</button><button id="brnNextNews">Next</button>
-                <%                        }
+               <!-- <button id="brnPrevNews">Previous</button><button id="brnNextNews">Next</button>-->
+                <%             
                     }
 
                     //admin functionality
