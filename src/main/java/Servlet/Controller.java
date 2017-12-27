@@ -21,7 +21,7 @@ import javax.servlet.annotation.WebServlet;
  * @author Conno
  */
 @WebServlet(name = "Controller", urlPatterns = {"/Controller"})
-@MultipartConfig(maxFileSize = 16177215) 
+@MultipartConfig(maxFileSize = 16177215)
 public class Controller extends HttpServlet {
 
     /**
@@ -33,25 +33,40 @@ public class Controller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static Controller instance;
+
+    private Controller(){};
+
+    public synchronized static Controller getInstance(){
+      if(instance == null){
+        synchronized(Controller.class){
+          if(instance == null){
+            instance = new Controller();
+          }
+        }
+      }
+      return instance;
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         HttpSession session = request.getSession();
-        
+
         String forwardToJsp = null;
         String action = request.getParameter("action");
-        
+
         CommandFactory factory = new CommandFactory();
         Command command = factory.createCommand(action);
-        
+
         if(command != null) {
             forwardToJsp = command.execute(request, response);
         } else {
             session.setAttribute("error_msg","Error - No Such command exists");
             forwardToJsp = "index.jsp";
         }
-        
+
         response.sendRedirect(forwardToJsp);
     }
 
