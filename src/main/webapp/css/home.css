@@ -1,0 +1,23 @@
+/* 
+    Created on : 09-Dec-2016, 23:33:40
+    Author     : Conno
+*/
+@import url("slideshow.css");
+
+main {
+    width: 75%;
+    min-height: 90vh;
+    margin: 0.5% auto;
+    background-color: #1a1a1a;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+h2 {
+    margin-left: 2.5%;
+    color: #E5DA2A;
+}
+
+hr {
+    width: 95%;
+    margin: 0% 2.5% 2.5% 2.5%;
+}

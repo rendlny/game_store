@@ -1,0 +1,108 @@
+/* 
+    Created on : 14-Dec-2016, 11:47:28
+    Author     : Conno
+*/
+
+main {
+    width: 60%;
+    min-height: 90vh;
+    margin: 0.5% auto;
+    background-color: #1a1a1a;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+h1 {
+    color: #E5DA2A;
+    margin-left: 2.5%; 
+}
+
+.line_container {
+    border: 1px #E5DA2A solid;
+    border-radius: 15px;
+    width: 95%;
+    margin: 2.5%;
+}
+
+.image_container {
+    display: inline-block;
+    width: 30%;
+    padding: 2.5%;
+    float:left;
+    min-height: 220px;
+    max-height: 220px;
+}
+
+.image_container img {
+    width: 100%;
+    height: 220px;
+    margin: 0 auto;
+    border: 1px #E5DA2A solid;
+    border-radius: 15px;
+}
+
+.details_container {
+    display: inline-block;
+    width: 60%;
+    padding: 2.5%;
+    min-height: 220px;
+    max-height: 220px;
+}
+
+.details_container h2 {
+    color: #E5DA2A;
+}
+
+.details_container p {
+    margin-top: 2%;
+    color: whitesmoke;
+}
+
+input[type=submit] {
+    margin-top: 2%;
+    color: #E5DA2A;
+    background-color: #1a1a1a;
+    font-size: 1.2em;
+    border: 1px #E5DA2A solid;
+    border-radius: 4px;
+    padding: 1%;
+    outline-color: #E5DA2A;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    color: #1a1a1a;
+    background-color: #E5DA2A;
+}
+
+.total_contaier {
+    width: 95%;
+    margin: 2.5%;
+}
+
+.value_container {
+    width: 50%;
+    margin-top: 3%;
+    margin-left: 30%;
+    float: left;
+}
+
+.value_container span {
+    color: #E5DA2A;
+}
+
+.value_container p {
+    color: whitesmoke;
+    display: inline;
+    margin: 5%;
+}
+
+.confirm input {
+    margin: 2% auto;
+}
+
+.empty_cart_msg {
+    color: whitesmoke;
+    width: 45%;
+    margin: 2% auto;
+    text-align: center;
+}

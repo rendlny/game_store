@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14-Dec-2016, 13:33:21
+    Author     : Aaron
+*/
+
+
+h1,h2,h3
+{
+   text-align: center;
+   color: #E5DA2A;
+}
+
+.PersonalInfo{
+    margin-top: 3em;
+    padding-bottom: 100px;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr{
+   text-align: center;
+   color: #E5DA2A; 
+
+}
+.link
+{
+    color: #E5DA2A;
+}
+td{
+    font-size: 1.5em;
+}
+

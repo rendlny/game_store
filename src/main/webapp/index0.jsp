@@ -1,4 +1,4 @@
-<%--
+<%-- 
     Document   : index
     Created on : 30-Nov-2016, 19:50:32
     Author     : Conno
@@ -19,12 +19,12 @@
             <jsp:include page = "include/message_display.jsp" />
             <jsp:include page = "include/slideshow.jsp" />
             <jsp:include page = "include/divider_bottom.jsp" />
-
-
+            
+            
             <h2>Recent Products:</h2>
             <hr/>
             <jsp:include page = "include/index_grid.jsp" />
-
+            
         </main>
     </body>
 </html>

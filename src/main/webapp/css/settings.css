@@ -1,0 +1,87 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14-Dec-2016, 16:20:03
+    Author     : Aaron
+*/
+
+h1,h2
+{
+   text-align: center;
+   color: #E5DA2A;
+}
+
+h3{
+     text-align: center;
+   color: #E5DA2A;
+}
+
+section
+{
+    margin-top: 5.5em;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+
+.update_form
+{
+    margin-left: 38%;
+   
+}
+
+label {
+    font-family: bigNoodleSlanted;
+    font-size: 1.1em;
+    letter-spacing: 5px;
+    color: #E5DA2A;
+}
+
+input {
+    width: 40%;
+    font-size: 1.2em;
+    padding: 1%;
+    outline: none;
+    border: 1px solid #E5DA2A;
+    border-radius: 4px;
+    background: rgba(0,0,0,0);
+    margin: 1% 0% 1% 0%;
+    color: #E5DA2A;
+}
+
+.name_input {
+    width: 47.25%;
+}
+
+.button {
+    width: 15%;
+    margin: 0% 2.25% 0% 2.25%;
+}
+
+.button:hover {
+    background-color: #E5DA2A;
+    color: #1a1a1a;
+    cursor: pointer;
+}
+
+button
+{
+    text-align: center;
+   margin-left:45%;
+    outline: none;
+    border: 1px solid #E5DA2A;
+    border-radius: 3px;
+    background: rgba(0,0,0,0);
+    color: #E5DA2A;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #E5DA2A;
+    color: #1a1a1a;
+    cursor: pointer;
+}

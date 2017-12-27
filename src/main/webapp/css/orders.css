@@ -1,0 +1,62 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-Dec-2016, 13:31:01
+    Author     : Ren
+*/
+
+h1,h2
+{
+    text-align: center;
+    color: #E5DA2A;
+}
+
+table {
+    font-family: bigNoodle;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+td{
+    font-size: 1.3em;
+}
+
+
+.ordersTable th{
+    background-color: #E5DA2A;
+    color: black;
+    font-family: bigNoodleSlanted;
+    font-size: 1.5em;
+}
+
+.ordersTable td{
+    color: #E5DA2A;
+    background-color: transparent;
+}
+
+tr:nth-child(odd) {
+    color: #E5DA2A;
+}
+
+.orderLineTable th{
+    font-size: 1.5em;
+    color: #E5DA2A;
+}
+
+.orderLineTable tr:nth-child(even) {
+    background-color: grey;
+}
+
+.orderLineTable tr:nth-child(odd) {
+    background-color: dimgray;
+    color: black;
+}
