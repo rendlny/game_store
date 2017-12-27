@@ -231,7 +231,7 @@ public class AddressDao extends Dao implements AddressDaoInterface {
     /** This method is used to update the address of a user, it takes in parameters of user input from a form
      *
      * @param userId - Is the the id that links the address the the specific user
-     * @param add1 - Is the value entered by the user to update the address Line 1 
+     * @param add1 - Is the value entered by the user to update the address Line 1
      * @param add2 -  Is the value entered by the user to update address line 2
      * @param city -  Is the value entered by the user to update their city
      * @param county - Is the value entered by the user to update their county
@@ -280,5 +280,3 @@ public class AddressDao extends Dao implements AddressDaoInterface {
     }
 
 }
-
-
