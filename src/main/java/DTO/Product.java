@@ -5,12 +5,17 @@
  */
 package DTO;
 
+import Observer.Observable;
+import Observer.Observer;
+import java.util.ArrayList;
+
 /**
  *
  * @author Ren
  */
-public class Product {
+public class Product implements Observable {
 
+    private ArrayList<Observer> observers = new ArrayList();
     private int product_id;
     private String product_name;
     private String product_desc;
@@ -39,7 +44,7 @@ public class Product {
         this.stock = stock;
         steam_app_id = 0;
     }
-    
+
     public Product(int product_id, String product_name, String product_desc,
             double product_price, double vat_percentage, int stock, int steam_app_id) {
         this.product_id = product_id;
@@ -136,5 +141,31 @@ public class Product {
     public String toString() {
         return "Product{" + "product_id=" + product_id + ", product_name=" + product_name + ", product_desc=" + product_desc + ", product_price=" + product_price + ", vat_percentage=" + vat_percentage + ", stock=" + stock + ", steam_app_id=" + steam_app_id + '}';
     }
-    
+
+    @Override
+    public synchronized boolean register(Observer o){
+      if(o != null && !observers.contains(o)){
+        observers.add(o);
+        System.out.println("Adding Observer: " + o.toString() + " to observers for " + product_name + ".");
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public synchronized boolean unregister(Observer o){
+      if(o!= null && observers.remove(o)){
+        System.out.println("Removed Observer: " + o.toString() + " from observers for " + product_name + ".");
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public synchronized void notifyObservers(){
+      observers.stream().forEach((o) ->
+      {
+        o.update();
+      });
+    }
 }
