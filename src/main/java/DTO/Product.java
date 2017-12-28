@@ -86,6 +86,7 @@ public class Product implements Observable {
 
     public void setProduct_price(double product_price) {
         this.product_price = product_price;
+        notifyObservers();
     }
 
     public double getVat_percentage() {
@@ -162,10 +163,9 @@ public class Product implements Observable {
     }
 
     @Override
-    public synchronized void notifyObservers(){
-      observers.stream().forEach((o) ->
-      {
+    public void notifyObservers(){
+      for(Observer o : observers){
         o.update();
-      });
+      }
     }
 }
