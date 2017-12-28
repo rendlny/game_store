@@ -33,22 +33,8 @@ public class Controller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static Controller instance;
 
-    private Controller(){};
-
-    public synchronized static Controller getInstance(){
-      if(instance == null){
-        synchronized(Controller.class){
-          if(instance == null){
-            instance = new Controller();
-          }
-        }
-      }
-      return instance;
-    }
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
