@@ -6,6 +6,24 @@ package Commands;
  */
 public class CommandFactory {
 
+    private volatile static CommandFactory uniqueInstance;
+    
+    private CommandFactory() {
+    
+    }
+    
+    public static CommandFactory getInstance() {
+        if(uniqueInstance == null) {
+            synchronized(CommandFactory.class) { 
+                if(uniqueInstance == null) {
+                    uniqueInstance = new CommandFactory();
+                }
+            }
+        }
+        
+        return uniqueInstance;
+    }
+    
     public Command createCommand(String action) {
         Command command = null;
 

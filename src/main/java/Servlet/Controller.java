@@ -43,7 +43,7 @@ public class Controller extends HttpServlet {
         String forwardToJsp = null;
         String action = request.getParameter("action");
 
-        CommandFactory factory = new CommandFactory();
+        CommandFactory factory = CommandFactory.getInstance();
         Command command = factory.createCommand(action);
 
         if(command != null) {
