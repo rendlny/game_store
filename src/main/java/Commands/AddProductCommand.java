@@ -9,6 +9,7 @@ import DAO.ProductDao;
 import DAO.ProductImageDao;
 import DTO.Product;
 import DTO.ProductImage;
+import DTO.User;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +34,6 @@ public class AddProductCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-
         //getting save directory
         Class cls = this.getClass();
         ProtectionDomain pDomain = cls.getProtectionDomain();
@@ -89,6 +89,12 @@ public class AddProductCommand implements Command {
 
         try {
 
+            User logged_in = new User();
+            if (session.getAttribute("logged_in") != null) {
+
+                logged_in = (User) session.getAttribute("logged_in");
+            }
+
             Double price = Double.parseDouble(request.getParameter("product_price"));
             Double vat = Double.parseDouble(request.getParameter("product_vat"));
             int stock = Integer.parseInt(request.getParameter("product_stock"));
@@ -109,10 +115,10 @@ public class AddProductCommand implements Command {
 
                 Boolean product_added = false;
                 if (steam_app_id < 1) {
-                    product_added = productDao.addProduct(p);
+                    product_added = productDao.addProduct(logged_in, p);
                 } else {
                     p.setSteam_app_id(steam_app_id);
-                    product_added = productDao.addProductWithSteamId(p);
+                    product_added = productDao.addProductWithSteamId(logged_in, p);
                 }
                 String filePath = null;
                 String fileName = null;

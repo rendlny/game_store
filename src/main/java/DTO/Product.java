@@ -84,9 +84,12 @@ public class Product implements Observable {
         return product_price;
     }
 
-    public void setProduct_price(double product_price) {
-        this.product_price = product_price;
-        notifyObservers();
+    public synchronized void setProduct_price(double product_price) {
+        if (product_price > 0) {
+            this.product_price = product_price;
+            System.out.println("Product " + product_name + " price updated to: " + product_price);
+            notifyObservers();
+        }
     }
 
     public double getVat_percentage() {
@@ -144,28 +147,28 @@ public class Product implements Observable {
     }
 
     @Override
-    public synchronized boolean register(Observer o){
-      if(o != null && !observers.contains(o)){
-        observers.add(o);
-        System.out.println("Adding Observer: " + o.toString() + " to observers for " + product_name + ".");
-        return true;
-      }
-      return false;
+    public synchronized boolean register(Observer o) {
+        if (o != null && !observers.contains(o)) {
+            observers.add(o);
+            System.out.println("Adding Observer: " + o.toString() + " to observers for " + product_name + ".");
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public synchronized boolean unregister(Observer o){
-      if(o!= null && observers.remove(o)){
-        System.out.println("Removed Observer: " + o.toString() + " from observers for " + product_name + ".");
-        return true;
-      }
-      return false;
+    public synchronized boolean unregister(Observer o) {
+        if (o != null && observers.remove(o)) {
+            System.out.println("Removed Observer: " + o.toString() + " from observers for " + product_name + ".");
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void notifyObservers(){
-      for(Observer o : observers){
-        o.update();
-      }
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update();
+        }
     }
 }

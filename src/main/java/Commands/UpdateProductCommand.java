@@ -7,6 +7,7 @@ package Commands;
 
 import DAO.ProductDao;
 import DTO.Product;
+import DTO.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,12 @@ public class UpdateProductCommand implements Command {
         boolean error = false;
         String msg = null;
 
+        User logged_in = new User();
+        if(session.getAttribute("logged_in") != null) {
+            
+            logged_in = (User)session.getAttribute("logged_in");
+        }
+        
         String name = request.getParameter("product_name");
         String desc = request.getParameter("product_desc");
         int product_id = 0;
@@ -46,7 +53,7 @@ public class UpdateProductCommand implements Command {
                 p.setVat_percentage(vat);
                 p.setStock(stock);
                 p.setProduct_id(product_id);
-                Boolean product_updated = productDao.updateProduct(p);
+                Boolean product_updated = productDao.updateProduct(logged_in,p);
 
                 if (product_updated) {
                     msg = "Successfully updated product details";
