@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.Product;
+import DTO.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,12 +26,13 @@ public class ProductDao extends Dao implements ProductDaoInterface {
     /**
      * This method is used to add a product to the product table
      *
+     * @param activeUser 
      * @param p a product object containing user input passed from add product
      * form
      * @return boolean, true if the product added successfully, false if not
      */
     @Override
-    public boolean addProduct(Product p) {
+    public boolean addProduct(User activeUser, Product p) {
         boolean added = false;
         Connection con = null;
         PreparedStatement ps = null;
@@ -76,7 +78,7 @@ public class ProductDao extends Dao implements ProductDaoInterface {
      * @return boolean, true if the product was deleted , false if not
      */
     @Override
-    public boolean deleteProduct(int product_id) {
+    public boolean deleteProduct(User activeUser, int product_id) {
         boolean deleted = false;
 
         Connection con = null;
@@ -394,7 +396,7 @@ public class ProductDao extends Dao implements ProductDaoInterface {
      * @return boolean, true if the product was updated successfully,0 if not
      */
     @Override
-    public boolean updateProduct(Product p) {
+    public boolean updateProduct(User activeUser, Product p) {
         boolean updated = false;
         Connection con = null;
         PreparedStatement ps = null;
@@ -481,7 +483,7 @@ public class ProductDao extends Dao implements ProductDaoInterface {
     }
 
     @Override
-    public boolean addProductWithSteamId(Product p) {
+    public boolean addProductWithSteamId(User activeUser, Product p) {
         boolean added = false;
         Connection con = null;
         PreparedStatement ps = null;
