@@ -42,7 +42,7 @@ public class UserUpdateAddressCommand implements Command{
             
             if (Address1 != null && Address2 != null && city !=null && county !=null && country !=null) {
 
-                boolean updated = addressDao.updateAddress(userId, Address1, Address2, city, county, country);
+                boolean updated = addressDao.updateAddress(logged_in,userId, Address1, Address2, city, county, country);
                 
                 if(updated == true){
                     

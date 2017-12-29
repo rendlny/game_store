@@ -86,8 +86,8 @@ public class CreateOrderCommand implements Command {
                             newOrder.setAddress_id(userAddresses.get(0).getAddressId());
                             newOrder.setOrder_date(User.getCurrentDate());
 
-                            if(orderDao.createOrder(newOrder)) {
-                                ArrayList<Order> orders = orderDao.getUserOrders(logged_in.getUserId());
+                            if(orderDao.createOrder(logged_in,newOrder)) {
+                                ArrayList<Order> orders = orderDao.getUserOrders(logged_in,logged_in.getUserId());
                                 int last_order = orders.get((orders.size() - 1)).getOrder_id();
                                 OrderLineDao orderLineDao = new OrderLineDao("gamestore");
                                 
@@ -96,10 +96,9 @@ public class CreateOrderCommand implements Command {
                                     cart_line.setOrder_id(last_order);
                                     Product p = productDao.getProductById(cart_line.getProduct_id());
                                     int newQty = p.getStock() - cart_line.getQuantity();
-                                    
+                                    Order order = orders.get(last_order);
                                     productDao.updateProductQuantity(p.getProduct_id(), newQty);
-                                    
-                                    orderLineDao.createOrderLine(cart_line); 
+                                    orderLineDao.createOrderLine(logged_in, cart_line, order); 
                                 }
                                 
                                 session.setAttribute("cart", null);

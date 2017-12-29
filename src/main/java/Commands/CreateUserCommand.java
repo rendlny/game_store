@@ -92,7 +92,7 @@ public class CreateUserCommand implements Command {
                                 User u = userDao.getUserByUsername(username);
                                 int userId = u.getUserId();
                                 Address a = new Address(userId, addressLine1, addressLine2, city, county, country);
-                                addAddress = addressDao.addAddress(a);
+                                addAddress = addressDao.addAddress(newUser, a);
                                 if (addAddress > 0) {
                                     message = "User " + username + " added!";
                                 } else {

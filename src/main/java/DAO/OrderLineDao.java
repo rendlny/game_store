@@ -5,7 +5,9 @@
  */
 package DAO;
 
+import DTO.Order;
 import DTO.OrderLine;
+import DTO.User;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,12 +27,12 @@ public class OrderLineDao extends Dao implements OrderLineInterface {
 
     /**
      * Creates an OrderLine record in the database from OrderLine Object supplied
-     * 
+     *
      * @param ol object generated from input from the cart
      * @return boolean returns if the OrderLine is created successfully
      */
     @Override
-    public boolean createOrderLine(OrderLine ol) {
+    public boolean createOrderLine(User activeUser, OrderLine ol, Order order) {
         boolean added = false;
 
         Connection con = null;
@@ -77,16 +79,18 @@ public class OrderLineDao extends Dao implements OrderLineInterface {
 
     /**
      * Removes the Order Line with supplied id
-     * 
+     *
      * @param line_id integer representing the id of the OrderLine you wish to delete
      * @return boolean returns if the order is removed successfully
      */
     @Override
-    public boolean removeOrderLine(int line_id) {
+    public boolean removeOrderLine(User activeUser, OrderLine ol, Order order) {
         boolean removed = false;
 
         Connection con = null;
         PreparedStatement ps = null;
+
+        int line_id = ol.getLine_id();
 
         try {
             con = getConnection();
@@ -126,17 +130,18 @@ public class OrderLineDao extends Dao implements OrderLineInterface {
 
     /**
      * Retrieves all the OrderLines from the database relating to the supplied id
-     * 
+     *
      * @param order_id integer representing the OrderLine id
      * @return ArrayList of found OrderLines
      */
     @Override
-    public ArrayList<OrderLine> getOrderLines(int order_id) {
+    public ArrayList<OrderLine> getOrderLines(User activeUser, Order order) {
 
         ArrayList<OrderLine> orderlines = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        int order_id = order.getOrder_id();
         try {
             con = getConnection();
             String query = "SELECT * FROM order_lines WHERE order_id = ?";

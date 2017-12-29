@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import DTO.User;
 import DTO.Order;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * @author Conno
  */
 public class OrderDao extends Dao implements OrderDaoInterface {
-    
+
     /**
      *
      * @param database
@@ -29,18 +30,18 @@ public class OrderDao extends Dao implements OrderDaoInterface {
 
     /**
      * Creates a new order from the supplied order object
-     * 
+     *
      * @param newOrder object of order passed from the create order form
      * @return boolean returns if the order is created successfully
      */
     @Override
-    public boolean createOrder(Order newOrder) {
-        boolean added = false; 
-        
+    public boolean createOrder(User activeUser, Order newOrder) {
+        boolean added = false;
+
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        
+
         try {
             con = getConnection();
             String query = "INSERT INTO orders( user_id, total_amount_due, "
@@ -52,13 +53,13 @@ public class OrderDao extends Dao implements OrderDaoInterface {
             ps.setInt(3, newOrder.getTotal_quanity());
             ps.setInt(4, newOrder.getAddress_id());
             ps.setString(5, newOrder.getOrder_date());
-            
+
             result = ps.executeUpdate();
-            
+
             if(result == 1) {
                 added = true;
             }
-            
+
         } catch (MySQLIntegrityConstraintViolationException ex) {
             System.out.println("An Constraint Exception Occured in the createOrder() "
                     + "method: " + ex.getMessage());
@@ -78,35 +79,36 @@ public class OrderDao extends Dao implements OrderDaoInterface {
                         + "createOrder() method: " + ex.getMessage());
             }
         }
-        
+
         return added;
     }
 
     /**
      * Cancels a previously created order
-     * 
+     *
      * @param order_id integer representing the id of the order
      * @return boolean to check if order has been successfully cancelled
      */
     @Override
-    public boolean cancelOrder(int order_id) {
-        
+    public boolean cancelOrder(User activeUser, Order order) {
+
         boolean removed = false;
-        
+
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        
+        int order_id = order.getOrder_id();
+
         try {
             con = getConnection();
             String query = "DELETE FROM orders "
                     + "WHERE order_id = ?";
-            
+
             ps = con.prepareStatement(query);
             ps.setInt(1, order_id);
-            
+
             result = ps.executeUpdate();
-            
+
             if(result == 1) {
                 removed = true;
             }
@@ -126,32 +128,32 @@ public class OrderDao extends Dao implements OrderDaoInterface {
                         + "cancelOrder() method: " + ex.getMessage());
             }
         }
-        
+
         return removed;
     }
 
     /**
      * Retrieves all the users orders that are currently in the database
-     * 
+     *
      * @param user_id integer representing the id of the user
      * @return ArrayList of all the orders found
      */
     @Override
-    public ArrayList<Order> getUserOrders(int user_id) {
+    public ArrayList<Order> getUserOrders(User activeUser, int user_id) {
         ArrayList<Order> found = null;
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         try {
             con = getConnection();
             String query = "SELECT * FROM orders "
                     + "WHERE user_id = ?";
             ps = con.prepareStatement(query);
             ps.setInt(1, user_id);
-            
+
             rs = ps.executeQuery();
-            
+
             found = new ArrayList<>();
             while(rs.next()) {
                 Order o = new Order(
@@ -162,9 +164,9 @@ public class OrderDao extends Dao implements OrderDaoInterface {
                     rs.getInt("address_id"),
                     rs.getString("order_date")
                 );
-                found.add(o);  
+                found.add(o);
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("An SQL Exception Occured in the cancelOrder() "
                     + "method: " + ex.getMessage());
@@ -184,8 +186,8 @@ public class OrderDao extends Dao implements OrderDaoInterface {
                         + "cancelOrder() method: " + ex.getMessage());
             }
         }
-        
+
         return found;
     }
-    
+
 }

@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.Order;
+import DTO.User;
 import java.util.ArrayList;
 
 /**
@@ -19,19 +20,19 @@ public interface OrderDaoInterface {
      * @param newOrder
      * @return
      */
-    public boolean createOrder(Order newOrder);
+    public boolean createOrder(User activeUser, Order newOrder);
 
     /**
      *
      * @param order_id
      * @return
      */
-    public boolean cancelOrder(int order_id);
+    public boolean cancelOrder(User activeUser, Order order);
 
     /**
      *
      * @param user_id
      * @return
      */
-    public ArrayList<Order> getUserOrders(int user_id);  
+    public ArrayList<Order> getUserOrders(User activeUser, int user_id);
 }

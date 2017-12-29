@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.Address;
+import DTO.User;
 import java.util.ArrayList;
 
 /**
@@ -13,11 +14,11 @@ import java.util.ArrayList;
  * @author Aaron
  */
 public interface AddressDaoInterface {
-    
-     public int addAddress(Address address);
-     public int deleteAddressByAddressId(int addressId);
-     public ArrayList<Address> getAddressByUserId(int userId );
+
+     public int addAddress(User activeUser, Address address);
+     public int deleteAddressByAddressId(User activeUser, int addressId, int userId);
+     public ArrayList<Address> getAddressByUserId(int userId);
      public ArrayList<Address> getAllAddresses();
-     public boolean updateAddress(int userId,String add1, String add2, String city, String county, String country);
-    
+     public boolean updateAddress(User activeUser, int userId,String add1, String add2, String city, String county, String country);
+
 }

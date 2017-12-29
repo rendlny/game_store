@@ -5,7 +5,9 @@
  */
 package DAO;
 
+import DTO.Order;
 import DTO.OrderLine;
+import DTO.User;
 import java.util.ArrayList;
 
 /**
@@ -13,10 +15,10 @@ import java.util.ArrayList;
  * @author Conno
  */
 public interface OrderLineInterface {
-    
-    public boolean createOrderLine(OrderLine ol);
-    public boolean removeOrderLine(int line_id);
-    public ArrayList<OrderLine> getOrderLines(int order_id);
+
+    public boolean createOrderLine(User activeUser, OrderLine ol, Order order);
+    public boolean removeOrderLine(User activeUser, OrderLine ol, Order order);
+    public ArrayList<OrderLine> getOrderLines(User activeUser, Order order);
 //    public boolean updateOrderLineQuantity(int order_line_id, int new_quantity);
-    
+
 }

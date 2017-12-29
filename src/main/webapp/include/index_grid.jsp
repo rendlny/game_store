@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : grid
     Created on : 14-Dec-2016, 13:20:36
     Author     : Conno
@@ -12,14 +12,14 @@
 <%
     ProductDao productDao = new ProductDao("gamestore");
     ProductImageDao imageDao = new ProductImageDao("gamestore");
-    
+
     ArrayList<Product> products = productDao.recentProducts();
-    if(products.size() > 0) {
+    if(products.size() > 0 || products == null) {
 %>
 <div class="rig">
     <%
         for(Product p : products) {
-            
+
             ArrayList<ProductImage> images = imageDao.getProductImageById(p.getProduct_id());
 
     %>
@@ -36,10 +36,10 @@
     %>
 </div>
 <%
-    } else { 
+    } else {
     %>
     <p class = "empty_cart_msg">
-        There is nothing in your cart at the moment! 
+        There is nothing in your cart at the moment!
         Try searching for something you may like.
     </p>
     <%

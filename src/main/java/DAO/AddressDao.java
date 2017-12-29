@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.Address;
+import DTO.User;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class AddressDao extends Dao implements AddressDaoInterface {
      * @return the rows effected, 1 if it executed successfully, 0 if failure
      */
     @Override
-    public int addAddress(Address address) {
+    public int addAddress(User activeUser, Address address) {
         Connection con = null;
         PreparedStatement ps = null;
         int rs = 0;
@@ -79,7 +80,7 @@ public class AddressDao extends Dao implements AddressDaoInterface {
      * @return the rows effected, 1 if it executed successfully, 0 if failure
      */
     @Override
-    public int deleteAddressByAddressId(int addressId) {
+    public int deleteAddressByAddressId(User activeUser, int addressId, int userId) {
         Connection con = null;
         PreparedStatement ps = null;
         int rs = 0;
@@ -239,7 +240,7 @@ public class AddressDao extends Dao implements AddressDaoInterface {
      * @return boolean value, true if the update worked successfully, false if it failed
      */
     @Override
-    public boolean updateAddress(int userId,String add1, String add2, String city, String county, String country){
+    public boolean updateAddress(User activeUser, int userId,String add1, String add2, String city, String county, String country){
    boolean updated = false;
 
         Connection con = null;
